@@ -16,17 +16,17 @@ To use the word cloud widget, you must set the desired data into the `WordCloudD
 ```dart
 WordCloudData mydata = WordCloudData(data: data_list);
 ```
-Parameter `data` needs list of `Map` that have keys `word` and `value`.  
+Parameter `data` needs list of `Map` that have keys `word`, `value` and optionally `color`.  
 For example,
 ```dart
 List<Map> data_list= [
-  {'word': 'Apple','value': 100},
+  {'word': 'Apple','value': 100, 'color': Colors.amber},
   {'word': 'Samsung','value': 60},
 ];
 ```
 Another way to set the data is using instance method `addData`.  
 ```dart
-mydata.addData(String word, Double value);
+mydata.addData(String word, Double value, {Color? color});
 ```
 
 ## WordCloudView
@@ -67,7 +67,7 @@ WordCloudView(
   colorlist: [Colors.black, Colors.redAccent, Colors.indigoAccent],
 )
 ```
-With the `colorlist` parameter, you can change word's font color. You should input list of `Color` . Word cloud will select font color ***Randomly***.  
+With the `colorlist` parameter, you can change word's font color. You should input list of `Color` . Word cloud will select font color ***Randomly*** for any word that has not been assigned a color explicitly in the `WordCloudData` structure.  
 
 ![캡처](https://drive.google.com/uc?export=view&id=1Br7XiPwr4KRNglr61NmzSW396AGHZ4JR)
 

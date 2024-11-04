@@ -129,7 +129,8 @@ class WordCloudSetting {
       final textSpan = TextSpan(
         text: data[i]['word'],
         style: TextStyle(
-          color: colorList?[Random().nextInt(colorList!.length)],
+          color: data[i]['color'] ??
+              colorList?[Random().nextInt(colorList!.length)],
           fontSize: getTextSize,
           fontWeight: fontWeight,
           fontFamily: fontFamily,

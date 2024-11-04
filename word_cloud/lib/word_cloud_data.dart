@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class WordCloudData {
   List<Map> data = [];
 
@@ -16,8 +18,12 @@ class WordCloudData {
         .toList();
   }
 
-  void addData(String word, double value) {
-    data.add({'word': word, 'value': value});
+  void addData(String word, double value, {Color? color}) {
+    data.add({
+      'word': word,
+      'value': value,
+      if (color != null) 'color': color,
+    });
     data = (data..sort((a, b) => a['value'].compareTo(b['value'])))
         .reversed
         .toList();

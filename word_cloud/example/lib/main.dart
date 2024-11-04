@@ -36,8 +36,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //example data list
   List<Map> word_list = [
-    {'word': 'Apple', 'value': 100},
-    {'word': 'Samsung', 'value': 60},
+    {'word': 'Apple', 'value': 100, 'color': Colors.amber},
+    {'word': 'Samsung', 'value': 60, 'color': Colors.green},
     {'word': 'Intel', 'value': 55},
     {'word': 'Tesla', 'value': 50},
     {'word': 'AMD', 'value': 40},
@@ -115,10 +115,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     WordCloudData wcdata = WordCloudData(data: word_list);
     WordCloudTap wordtaps = WordCloudTap();
-
 
     //WordCloudTap Setting
     for (int i = 0; i < word_list.length; i++) {
@@ -132,8 +130,6 @@ class _MyHomePageState extends State<MyHomePage> {
       wordtaps.addWordtap(word_list[i]['word'], tap);
     }
 
-
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -141,39 +137,49 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Clicked Word : ${wordstring}', style: TextStyle(fontSize: 20),),
-            Text('Clicked Count : ${count}', style: TextStyle(fontSize: 20)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                WordCloudTapView(
-                  data: wcdata,
-                  wordtap: wordtaps,
-                  mapcolor: Color.fromARGB(255, 174, 183, 235),
-                  mapwidth: 500,
-                  mapheight: 500,
-                  fontWeight: FontWeight.bold,
-                  shape: WordCloudCircle(radius: 250),
-                  colorlist: [Colors.black, Colors.redAccent, Colors.indigoAccent],
-                ),
-                SizedBox(
-                  height: 15,
-                  width:30,
-                ),
-                WordCloudView(
-                  data: wcdata,
-                  mapcolor: Color.fromARGB(255, 174, 183, 235),
-                  mapwidth: 500,
-                  mapheight: 500,
-                  fontWeight: FontWeight.bold,
-                  colorlist: [Colors.black, Colors.redAccent, Colors.indigoAccent],
-                ),
-              ],
-            ),
-          ]
-        ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Clicked Word : ${wordstring}',
+                style: TextStyle(fontSize: 20),
+              ),
+              Text('Clicked Count : ${count}', style: TextStyle(fontSize: 20)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  WordCloudTapView(
+                    data: wcdata,
+                    wordtap: wordtaps,
+                    mapcolor: Color.fromARGB(255, 174, 183, 235),
+                    mapwidth: 500,
+                    mapheight: 500,
+                    fontWeight: FontWeight.bold,
+                    shape: WordCloudCircle(radius: 250),
+                    colorlist: [
+                      Colors.black,
+                      Colors.redAccent,
+                      Colors.indigoAccent
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                    width: 30,
+                  ),
+                  WordCloudView(
+                    data: wcdata,
+                    mapcolor: Color.fromARGB(255, 174, 183, 235),
+                    mapwidth: 500,
+                    mapheight: 500,
+                    fontWeight: FontWeight.bold,
+                    colorlist: [
+                      Colors.black,
+                      Colors.redAccent,
+                      Colors.indigoAccent
+                    ],
+                  ),
+                ],
+              ),
+            ]),
       ),
     );
   }
